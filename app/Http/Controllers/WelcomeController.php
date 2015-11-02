@@ -31,8 +31,8 @@ class WelcomeController extends Controller {
             foreach ($xhprofData['data'] as $info) {
                 $url = parse_url($info['host']);
                 $info['host'] = $url['host'];
-                $info['path'] = $url['path'];
-                $info['query'] = $url['query'];
+                $info['path'] = !empty($url['path']) ? $url['path'] : '';
+                $info['query'] = !empty($url['query']) ? $url['query'] : '';
                 $info['xhprof_detail_url'] = parent::XHPROF_HOST . '/?run=' . $info['key'];
                 $data[$info['key']] = $info;
             }
